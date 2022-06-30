@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AssignUsersToProjects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProjectName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AssignUsersToRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmailId" />
+    </Key>
+    <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="int" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Project2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" />
+    <Property Name="ProjectName" Type="varchar" MaxLength="50" />
+    <Property Name="RoleName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="ProjectName" />
+    </Key>
+    <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProjectDescription" Type="varchar" MaxLength="50" />
+    <Property Name="ProjectStartDate" Type="varchar" MaxLength="50" />
+    <Property Name="ProjectEndDate" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleName" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AssignUsersToProjects_AssignUsersToProjects">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="AssignUsersToProjects" Type="Self.AssignUsersToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmailId" />
+      </Principal>
+      <Dependent Role="AssignUsersToProjects">
+        <PropertyRef Name="EmailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignUsersToProjects_Projects">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+    <End Role="AssignUsersToProjects" Type="Self.AssignUsersToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectName" />
+      </Principal>
+      <Dependent Role="AssignUsersToProjects">
+        <PropertyRef Name="ProjectName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignUsersToRole_AssignUsersToRole">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="AssignUsersToRole" Type="Self.AssignUsersToRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmailId" />
+      </Principal>
+      <Dependent Role="AssignUsersToRole">
+        <PropertyRef Name="EmailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignUsersToRole_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="AssignUsersToRole" Type="Self.AssignUsersToRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleName" />
+      </Principal>
+      <Dependent Role="AssignUsersToRole">
+        <PropertyRef Name="RoleName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project2_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Project2" Type="Self.Project2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmailId" />
+      </Principal>
+      <Dependent Role="Project2">
+        <PropertyRef Name="EmailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project2_Projects">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+    <End Role="Project2" Type="Self.Project2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectName" />
+      </Principal>
+      <Dependent Role="Project2">
+        <PropertyRef Name="ProjectName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project2_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Project2" Type="Self.Project2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleName" />
+      </Principal>
+      <Dependent Role="Project2">
+        <PropertyRef Name="RoleName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="AssignUsersToProjects" EntityType="Self.AssignUsersToProjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssignUsersToRole" EntityType="Self.AssignUsersToRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project2" EntityType="Self.Project2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AssignUsersToProjects_AssignUsersToProjects" Association="Self.FK_AssignUsersToProjects_AssignUsersToProjects">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="AssignUsersToProjects" EntitySet="AssignUsersToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignUsersToProjects_Projects" Association="Self.FK_AssignUsersToProjects_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="AssignUsersToProjects" EntitySet="AssignUsersToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignUsersToRole_AssignUsersToRole" Association="Self.FK_AssignUsersToRole_AssignUsersToRole">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="AssignUsersToRole" EntitySet="AssignUsersToRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignUsersToRole_Role" Association="Self.FK_AssignUsersToRole_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="AssignUsersToRole" EntitySet="AssignUsersToRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project2_Employee" Association="Self.FK_Project2_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Project2" EntitySet="Project2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project2_Projects" Association="Self.FK_Project2_Projects">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="Project2" EntitySet="Project2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project2_Role" Association="Self.FK_Project2_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Project2" EntitySet="Project2" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

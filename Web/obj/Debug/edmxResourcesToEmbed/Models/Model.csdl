@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PROLIFICSPROJECTMANAGEMENTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ProjectDetails" Relationship="Self.ProjectsDetails__employeeId__fk" FromRole="Employee" ToRole="ProjectDetails" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+    </Key>
+    <Property Name="ProjectId" Type="Int32" Nullable="false" />
+    <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectStartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProjectEndDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProjectDetails" Relationship="Self.FK__ProjectDe__Proje__5CD6CB2B" FromRole="Project" ToRole="ProjectDetails" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProjectDetails" Relationship="Self.FK__ProjectDe__RoleI__5DCAEF64" FromRole="Role" ToRole="ProjectDetails" />
+  </EntityType>
+  <EntityType Name="ProjectDetail">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.ProjectsDetails__employeeId__fk" FromRole="ProjectDetails" ToRole="Employee" />
+    <NavigationProperty Name="Project" Relationship="Self.FK__ProjectDe__Proje__5CD6CB2B" FromRole="ProjectDetails" ToRole="Project" />
+    <NavigationProperty Name="Role" Relationship="Self.FK__ProjectDe__RoleI__5DCAEF64" FromRole="ProjectDetails" ToRole="Role" />
+  </EntityType>
+  <Association Name="ProjectsDetails__employeeId__fk">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="ProjectDetails" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="ProjectDetails">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProjectDe__Proje__5CD6CB2B">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProjectDetails" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="ProjectDetails">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProjectDe__RoleI__5DCAEF64">
+    <End Role="Role" Type="Self.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProjectDetails" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="ProjectDetails">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PROLIFICSPROJECTMANAGEMENTEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetail" />
+    <AssociationSet Name="ProjectsDetails__employeeId__fk" Association="Self.ProjectsDetails__employeeId__fk">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProjectDe__Proje__5CD6CB2B" Association="Self.FK__ProjectDe__Proje__5CD6CB2B">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProjectDe__RoleI__5DCAEF64" Association="Self.FK__ProjectDe__RoleI__5DCAEF64">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

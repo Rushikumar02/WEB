@@ -1,0 +1,81 @@
+﻿@model Web.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link href="~/fonts/fontawesome-webfont.svg" rel="stylesheet">
+</head>
+
+<body class="listcss">
+    <div class="Home">
+        <h2><span style="color:darkseagreen">Employee Details</span> </h2>
+    </div>
+
+    <div>
+        <hr />
+        <p>
+            <i class="fa-solid fa-circle-arrow-left"> </i> @Html.ActionLink(" Back to List", "List", new { }, new { @class = "clr" })
+        </p>
+
+        <br />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EmailId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmailId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+            <i class="fa-solid fa-pen-to-square"></i>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }, new { @class = "clr" })
+        
+    </p>
+</body>
+</html>

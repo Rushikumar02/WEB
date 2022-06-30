@@ -1,0 +1,42 @@
+﻿@model Web.Models.Role
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/Site.css" />
+</head>
+<body class="listcss">
+    <div class="Home">
+        <h2><span style="color:darkseagreen">Role Details</span> </h2>
+
+    </div>
+        <div>
+            <hr />
+            <p>
+                <i class="fa-solid fa-circle-arrow-left"> </i>
+                @Html.ActionLink("Back to List", "List", new { }, new { @class = "clr" })
+            </p>
+            <br />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoleId)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RoleId)
+                </dd>
+                <dt></dt>
+                <dd></dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoleName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RoleName)
+                </dd>
+
+            </dl>
+        </div>
+</body>
+</html>

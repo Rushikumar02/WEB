@@ -1,0 +1,43 @@
+﻿@model Web.Models.AssignUsersToRole
+
+@{
+    ViewBag.Title = "Details";
+}
+<html>
+<head>
+    <title>Create Employee</title>
+
+    <link rel="stylesheet" href="~/Content/Site.css" />
+
+    <!-- Google fonts -->
+    <link href="~/fonts/fontawesome-webfont.svg" rel="stylesheet">
+
+</head>
+<body class="listcss">
+    <div class="Home">
+        <h2><span style="color:darkseagreen">Your Role</span> </h2>
+    </div>
+    <hr />
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.RoleName)
+        </dd>
+
+    </dl>
+
+
+</body>
+</html>

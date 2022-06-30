@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="45d4e748f3544a3592e9bb37636d1ed7" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.Employee" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Project" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Role" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Project2" Width="1.5" PointX="3" PointY="4.25" />
+        <AssociationConnector Association="DatabaseModel.FK_Project2_Employee" />
+        <AssociationConnector Association="DatabaseModel.FK_Project2_Projects" />
+        <AssociationConnector Association="DatabaseModel.FK_Project2_Role" />
+        <EntityTypeShape EntityType="DatabaseModel.AssignUsersToProject" Width="1.5" PointX="3" PointY="1.25" />
+        <AssociationConnector Association="DatabaseModel.FK_AssignUsersToProjects_AssignUsersToProjects" />
+        <AssociationConnector Association="DatabaseModel.FK_AssignUsersToProjects_Projects" />
+        <EntityTypeShape EntityType="DatabaseModel.AssignUsersToRole" Width="1.5" PointX="3" PointY="7.5" />
+        <AssociationConnector Association="DatabaseModel.FK_AssignUsersToRole_AssignUsersToRole" />
+        <AssociationConnector Association="DatabaseModel.FK_AssignUsersToRole_Role" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

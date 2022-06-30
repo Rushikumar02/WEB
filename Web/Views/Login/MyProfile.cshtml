@@ -1,0 +1,85 @@
+﻿@model Web.Models.Employee
+
+@{
+    ViewBag.Title = "MyProfile";
+}
+<html>
+<head>
+    <link rel="stylesheet" href="~/Content/Site.css" />
+</head>
+<body class="listcss">
+    <div class="Home">
+        <h2><span style="color:darkseagreen">My Profile</span> </h2>
+    </div>
+    <div>
+        <hr />
+
+        <p class="right">
+
+            @Html.ActionLink("Role Details", "Details", "UsersToRoles", new { EmailId = Model.EmailId }, new { @class = "clr" })
+            <i class="fa-solid fa-circle-info"></i> |
+            @Html.ActionLink("Project Details", "Details", "UsersToProjects", new { EmailId = Model.EmailId }, new { @class = "clr" })
+            <i class="fa-solid fa-circle-info"></i> |
+
+        </p>
+        <p>
+            <i class="fa-solid fa-circle-arrow-left"> </i>
+            @Html.ActionLink("  Back to Home  ", "HomePage", "Home", new { }, new { @class = "clr" })
+
+        </p>
+        <br />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+        </dl>
+    </div>
+
+
+</body>
+</html>
